@@ -29,7 +29,7 @@ public class SwitchCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        minDistanse = 100;
+        
         foreach(Transform camera in cameras)
         {
             if((camera.position - player.position).magnitude < minDistanse)
@@ -40,10 +40,15 @@ public class SwitchCamera : MonoBehaviour
                     curentCamera.SetActive(false);
                 }
                 curentCamera = camera.gameObject;
-                curentCamera.SetActive(true);
+                if(!curentCamera.activeSelf)
+                {
+                    curentCamera.SetActive(true);
+                }
             }
 
         }
+        minDistanse = 100;
 
     }
+    
 }
